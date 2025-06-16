@@ -4,31 +4,38 @@
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <title>Ethereal - Empowering Your Financial Future</title>
-    <meta name="description" content="Ethereal is a futuristic platform offering multiple income streams through referrals, content creation, investments, and community engagement.">
+    <meta name="description" content="Ethereal offers multiple income streams through referrals, content creation, investments, and community engagement in Nigeria.">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
     <style>
         body {
             font-family: 'Montserrat', sans-serif;
-            background: linear-gradient(135deg, #0a2e1a, #1a5d2e);
+            background: #0a1e15;
             color: #fff;
+            margin: 0;
             overflow-x: hidden;
         }
         .navbar {
-            background: rgba(10, 46, 26, 0.9);
+            background: #fff;
             padding: 15px 0;
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
         }
         .navbar-brand img {
             height: 40px;
         }
         .nav-link {
-            color: #d4ffcc !important;
-            font-weight: 500;
+            color: #0a1e15 !important;
+            font-weight: 600;
             margin: 0 15px;
+            text-transform: uppercase;
         }
         .nav-link:hover {
-            color: #a3e4a3 !important;
+            color: #2ecc71 !important;
         }
         .btn-green {
             background-color: #2ecc71;
@@ -42,46 +49,91 @@
             background-color: #27ae60;
         }
         .hero-section {
-            background: url('images/hero-bg.jpg') no-repeat center center/cover;
             height: 80vh;
-            display: flex;
-            align-items: center;
+            position: relative;
+            margin-top: 70px; /* Space for fixed navbar */
+            overflow: hidden;
+        }
+        .hero-slideshow {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+        .hero-slideshow img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            position: absolute;
+            opacity: 0;
+            animation: slideFade 20s infinite;
+        }
+        .hero-slideshow img:nth-child(1) { animation-delay: 0s; }
+        .hero-slideshow img:nth-child(2) { animation-delay: 5s; }
+        .hero-slideshow img:nth-child(3) { animation-delay: 10s; }
+        .hero-slideshow img:nth-child(4) { animation-delay: 15s; }
+        @keyframes slideFade {
+            0% { opacity: 0; }
+            20% { opacity: 1; }
+            80% { opacity: 1; }
+            100% { opacity: 0; }
+        }
+        .hero-content {
+            position: relative;
+            z-index: 2;
             text-align: center;
+            padding-top: 60vh; /* Move text lower */
+            color: #fff;
+        }
+        .hero-content h1 {
+            font-size: 4.5rem;
+            font-weight: 900;
+            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.8);
+            background: rgba(0, 0, 0, 0.4);
+            padding: 10px 20px;
+            display: inline-block;
+            border-radius: 5px;
+            animation: bounceIn 1s ease-out;
+        }
+        @keyframes bounceIn {
+            0% { transform: scale(0.1); opacity: 0; }
+            60% { transform: scale(1.2); opacity: 1; }
+            100% { transform: scale(1); }
+        }
+        .section-padding {
+            padding: 100px 0;
+            position: relative;
+            z-index: 2;
+        }
+        .overview-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid #2ecc71;
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            min-height: 300px;
+            background-size: cover;
+            background-position: center;
+            color: #fff;
             position: relative;
         }
-        .hero-section::before {
+        .overview-card::before {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.5);
+            background: rgba(0, 0, 0, 0.6);
+            border-radius: 10px;
         }
-        .hero-content {
+        .overview-card h4, .overview-card p {
             position: relative;
             z-index: 1;
-        }
-        .hero-content h1 {
-            font-size: 3.5rem;
-            font-weight: 700;
-            margin-bottom: 20px;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-        }
-        .section-padding {
-            padding: 80px 0;
-        }
-        .card-custom {
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid #2ecc71;
-            border-radius: 10px;
-            padding: 20px;
+            font-weight: 700; /* Bolder text */
             text-align: center;
-            transition: transform 0.3s;
-        }
-        .card-custom:hover {
-            transform: translateY(-10px);
-            background: rgba(46, 204, 113, 0.2);
         }
         .service-box {
             background: rgba(255, 255, 255, 0.1);
@@ -92,12 +144,20 @@
         }
         .chart-placeholder {
             width: 100%;
-            height: 300px;
+            height: 350px;
             background: #1a5d2e;
             border: 2px dashed #2ecc71;
             text-align: center;
-            line-height: 300px;
+            line-height: 350px;
             color: #d4ffcc;
+        }
+        .testimonial-card {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid #2ecc71;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+            text-align: center;
         }
         .accordion .card {
             background: rgba(255, 255, 255, 0.1);
@@ -111,7 +171,7 @@
             background: rgba(26, 93, 46, 0.8);
         }
         .footer {
-            background: #0a2e1a;
+            background: #0a1e15;
             padding: 40px 0;
             text-align: center;
         }
@@ -123,7 +183,7 @@
             color: #27ae60;
         }
     </style>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;900&display=swap" rel="stylesheet">
 </head>
 <body>
     <!-- Navigation -->
@@ -137,48 +197,69 @@
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item"><a class="nav-link" href="#overview">Overview</a></li>
                     <li class="nav-item"><a class="nav-link" href="#services">Services</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#testimonials">Testimonials</a></li>
                     <li class="nav-item"><a class="nav-link" href="#faq">FAQ</a></li>
-                    <li class="nav-item"><a class="nav-link" href="signin.html">Sign In</a></li>
-                    <li class="nav-item"><a class="nav-link" href="signup.html">Sign Up</a></li>
+                    <li class="nav-item"><a class="nav-link" href="login.html">Login</a></li>
+                    <li class="nav-item"><a class="nav-link" href="signup.html">Register</a></li>
                 </ul>
             </div>
         </div>
     </nav>
 
-    <!-- Hero Section -->
+    <!-- Hero Section (Slideshow) -->
     <section class="hero-section">
-        <div class="container">
-            <div class="hero-content">
-                <h1>Welcome to Ethereal</h1>
-                <p class="lead">Unlock financial freedom with multiple income streams, referrals, and investments.</p>
-                <a href="#services" class="btn btn-green btn-lg">Get Started</a>
-            </div>
+        <div class="hero-slideshow">
+            <img src="images/photo_5945158336477513201_y.jpg" alt="Slide 1">
+            <img src="images/photo_5945158336477513202_y.jpg" alt="Slide 2">
+            <img src="images/photo_5945158336477513203_y.jpg" alt="Slide 3">
+            <img src="images/photo_5945158336477513204_y.jpg" alt="Slide 4">
+            <img src="images/photo_5945158336477513205_y.jpg" alt="Slide 5">
+            <img src="images/photo_5945158336477513206_y.jpg" alt="Slide 6">
+            <img src="images/photo_5945158336477513207_y.jpg" alt="Slide 7">
+            <img src="images/photo_5945158336477513208_y.jpg" alt="Slide 8">
+            <img src="images/photo_5945158336477513209_y.jpg" alt="Slide 9">
+            <img src="images/photo_5945158336477513210_y.jpg" alt="Slide 10">
+            <img src="images/photo_5945158336477513211_y.jpg" alt="Slide 11">
+            <img src="images/photo_5945158336477513212_y.jpg" alt="Slide 12">
+            <img src="images/photo_5945158336477513213_y.jpg" alt="Slide 13">
+            <img src="images/photo_5945158336477513214_y.jpg" alt="Slide 14">
+            <img src="images/photo_5945158336477513215_y.jpg" alt="Slide 15">
+            <img src="images/photo_5945158336477513216_y.jpg" alt="Slide 16">
         </div>
+        <div class="container hero-content"></div> <!-- Removed text, keeping structure for potential future use -->
+        <script>
+            let slideIndex = 0;
+            const slides = document.querySelectorAll('.hero-slideshow img');
+            function showSlides() {
+                slides.forEach(slide => slide.style.opacity = '0');
+                slideIndex = (slideIndex + 1) % slides.length;
+                slides[slideIndex].style.opacity = '1';
+                setTimeout(showSlides, 5000); // Change slide every 5 seconds
+            }
+            showSlides();
+        </script>
     </section>
 
-    <!-- Overview Section -->
+    <!-- Platform Overview Section -->
     <section id="overview" class="section-padding">
         <div class="container">
-            <h2 class="text-center mb-4">Platform Overview</h2>
-            <p class="text-center">Ethereal is a futuristic digital platform empowering users with financial opportunities through referrals, content creation, investments, and a united community network.</p>
+            <h2 class="text-center mb-4" style="font-weight: 900; font-size: 2.5rem;">Platform Overview</h2>
+            <p class="text-center">Ethereal is a futuristic platform empowering users with financial opportunities through referrals, content creation, investments, and a united community network in Nigeria.</p>
             <div class="row mt-5">
                 <div class="col-md-4">
-                    <div class="card-custom">
-                        <img src="images/referral.jpg" alt="Referral System" class="img-fluid mb-3" style="max-height: 150px;">
+                    <div class="overview-card" style="background-image: url('images/referral-bg.jpg');">
                         <h4>Referral System</h4>
                         <p>Earn commissions by inviting friends and growing your network.</p>
                     </div>
                 </div>
                 <div class="col-md-4">
-                    <div class="card-custom">
-                        <img src="images/investment.jpg" alt="Investment" class="img-fluid mb-3" style="max-height: 150px;">
+                    <div class="overview-card" style="background-image: url('images/investment-bg.jpg');">
                         <h4>Investment & Shares</h4>
                         <p>Buy shares for dividends and long-term passive income.</p>
                     </div>
                 </div>
                 <div class="col-md-4">
-                    <div class="card-custom">
-                        <img src="images/community.jpg" alt="Community" class="img-fluid mb-3" style="max-height: 150px;">
+                    <div class="overview-card" style="background-image: url('images/community-bg.jpg');">
                         <h4>Community Engagement</h4>
                         <p>Join events and social activities for bonuses and rewards.</p>
                     </div>
@@ -190,34 +271,69 @@
     <!-- Services Section -->
     <section id="services" class="section-padding bg-dark">
         <div class="container">
-            <h2 class="text-center mb-4">Our Services</h2>
+            <h2 class="text-center mb-4" style="font-weight: 900; font-size: 2.5rem;">Our Services</h2>
             <div class="row">
                 <div class="col-md-6">
                     <div class="service-box">
                         <h4>Referral Program</h4>
-                        <p>Earn commissions by inviting others, with higher earnings from active referrals.</p>
+                        <p>Earn N12,000 starter reward and N12,500 revenue share by inviting others.</p>
                     </div>
                     <div class="service-box mt-3">
                         <h4>Content Creation</h4>
-                        <p>Earn up to $25 per article or engage with content for rewards.</p>
+                        <p>Earn up to N3,500 per 12 words for engaged articles and N20K per upload.</p>
+                    </div>
+                    <div class="service-box mt-3">
+                        <h4>Daily Bonuses</h4>
+                        <p>Receive bonuses like 5GB data and N400 residual income daily.</p>
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="service-box">
                         <h4>Investment Opportunities</h4>
-                        <p>Purchase shares for dividends and potential value appreciation.</p>
+                        <p>Invest N14,000 enrollment fee for 150 units (N15K) Ethereal stock.</p>
                     </div>
                     <div class="service-box mt-3">
                         <h4>Social Engagement</h4>
-                        <p>Earn through Snapchat streaks and daily social media activities.</p>
+                        <p>Earn N25K via Snapchat streaks and N200/link for social engagement.</p>
+                    </div>
+                    <div class="service-box mt-3">
+                        <h4>Team Revenue</h4>
+                        <p>Unlimited earnings from team efforts and level-up revenue.</p>
                     </div>
                 </div>
             </div>
             <div class="text-center mt-4">
-                <div class="chart-placeholder">Interactive Earnings Chart (To be implemented)</div>
+                <div class="chart-placeholder">Earnings Chart (To be implemented)</div>
             </div>
             <div class="text-center mt-4">
-                <a href="#faq" class="btn btn-green">Learn More</a>
+                <a href="#faq" class="btn btn-green">Explore More</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="section-padding">
+        <div class="container">
+            <h2 class="text-center mb-4" style="font-weight: 900; font-size: 2.5rem;">What Our Members Say</h2>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="testimonial-card">
+                        <p>"Ethereal changed my life with its referral system! Earned N50K in a week!"</p>
+                        <h5>- John D.</h5>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="testimonial-card">
+                        <p>"The investment dividends are amazing. Highly recommend!"</p>
+                        <h5>- Aisha M.</h5>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="testimonial-card">
+                        <p>"Social engagement rewards are quick and seamless. Great platform!"</p>
+                        <h5>- Tunde K.</h5>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -225,7 +341,7 @@
     <!-- FAQ Section -->
     <section id="faq" class="section-padding">
         <div class="container">
-            <h2 class="text-center mb-4">Frequently Asked Questions</h2>
+            <h2 class="text-center mb-4" style="font-weight: 900; font-size: 2.5rem;">Frequently Asked Questions</h2>
             <div class="accordion" id="faqAccordion">
                 <div class="card">
                     <div class="card-header" id="faq1">
@@ -237,7 +353,7 @@
                     </div>
                     <div id="collapse1" class="collapse show" aria-labelledby="faq1" data-parent="#faqAccordion">
                         <div class="card-body">
-                            Ethereal is a platform offering financial empowerment through referrals, content creation, investments, and community engagement.
+                            Ethereal is a platform offering financial empowerment through referrals, content creation, investments, and community engagement in Nigeria.
                         </div>
                     </div>
                 </div>
@@ -251,7 +367,7 @@
                     </div>
                     <div id="collapse2" class="collapse" aria-labelledby="faq2" data-parent="#faqAccordion">
                         <div class="card-body">
-                            Earn through referrals, content creation (up to $25/article), social engagement, and investment dividends.
+                            Earn through referrals (N12,000+), content (N3,500/article), social engagement (N25K streaks), and investment dividends.
                         </div>
                     </div>
                 </div>
@@ -265,7 +381,35 @@
                     </div>
                     <div id="collapse3" class="collapse" aria-labelledby="faq3" data-parent="#faqAccordion">
                         <div class="card-body">
-                            Payouts occur multiple times weekly, such as thrice per week.
+                            Payouts occur multiple times weekly, such as thrice per week, via digital wallets.
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header" id="faq4">
+                        <h5 class="mb-0">
+                            <button class="btn btn-link text-white collapsed" type="button" data-toggle="collapse" data-target="#collapse4" aria-expanded="false" aria-controls="collapse4">
+                                What are the investment options?
+                            </button>
+                        </h5>
+                    </div>
+                    <div id="collapse4" class="collapse" aria-labelledby="faq4" data-parent="#faqAccordion">
+                        <div class="card-body">
+                            Invest N14,000 for 150 units (N15K) Ethereal stock, earning dividends and potential appreciation.
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header" id="faq5">
+                        <h5 class="mb-0">
+                            <button class="btn btn-link text-white collapsed" type="button" data-toggle="collapse" data-target="#collapse5" aria-expanded="false" aria-controls="collapse5">
+                                How do I join events?
+                            </button>
+                        </h5>
+                    </div>
+                    <div id="collapse5" class="collapse" aria-labelledby="faq5" data-parent="#faqAccordion">
+                        <div class="card-body">
+                            Participate in community events like Eid bonuses by staying active and engaging with updates.
                         </div>
                     </div>
                 </div>
@@ -276,7 +420,7 @@
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
-            <p>© 2025 Ethereal. All rights reserved.</p>
+            <p>© 2025 Ethereal. All rights reserved. | Time: 01:34 PM WAT, June 16, 2025</p>
             <div class="social-links">
                 <a href="#"><i class="fab fa-discord"></i></a>
                 <a href="#"><i class="fab fa-telegram"></i></a>
